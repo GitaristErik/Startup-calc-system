@@ -30,6 +30,7 @@ kotlin {
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(libs.androidx.ui.tooling.preview.desktop)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -83,6 +84,10 @@ android {
     dependencies {
         debugImplementation(libs.compose.ui.tooling)
     }
+}
+dependencies {
+    implementation(libs.androidx.ui.tooling.preview.desktop)
+    implementation(libs.androidx.ui.tooling.preview.android)
 }
 
 compose.desktop {
