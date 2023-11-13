@@ -49,7 +49,7 @@ class FirstAlgorithm(
 
         operator fun invoke(x: Double, α: Double): Double = Double.NaN
 
-        abstract val numberU: Int
+        val numberU: Int
     }
 
     private val membershipFunctionU1 = object : MembershipFunctionU {
@@ -190,7 +190,7 @@ class FirstAlgorithm(
         }
     }
 
-    @OptIn(kotlin.ExperimentalStdlibApi::class)
+    @OptIn(ExperimentalStdlibApi::class)
     private fun ratingScale(m: Double) = when (m) {
         in 0.67..1.0 -> M.VERY_HIGH
         in 0.47..<0.67 -> M.HIGH
