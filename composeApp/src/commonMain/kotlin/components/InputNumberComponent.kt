@@ -1,5 +1,6 @@
 package components
 
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -20,7 +21,7 @@ fun InputNumberComponent(
     val validate = { text: String ->
         text.length <= charLimit &&
                 text.isNotEmpty() &&
-                (text.toIntOrNull() != null || text.toDoubleOrNull() != null)
+                (text.toIntOrNull() != null)// || text.toDoubleOrNull() != null)
 //                text.toInt() in 0..255
     }
 
@@ -34,6 +35,7 @@ fun InputNumberComponent(
         },
         label = { Text(label ?: "") },
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardActions = KeyboardActions {  },
         maxLines = 1,
         singleLine = true,
 //        trailingIcon = {

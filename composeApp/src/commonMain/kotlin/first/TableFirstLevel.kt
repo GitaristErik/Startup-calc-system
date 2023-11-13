@@ -1,4 +1,4 @@
-package org.example.project.first
+package first
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,15 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import components.TableCell
-import first.InputHelper
 import utils.FirstAlgorithm
 
 @Composable
-fun TableFirstLevel(calculator: FirstAlgorithm) {
+fun TableFirstLevel(
+    calculator: FirstAlgorithm,
+    titleTypography: TextStyle = MaterialTheme.typography.titleMedium,
+    bodyTypography: TextStyle = MaterialTheme.typography.bodyMedium,
+) {
 
     Text(
         text = InputHelper.labelTable1,
@@ -39,88 +42,88 @@ fun TableFirstLevel(calculator: FirstAlgorithm) {
         Modifier.padding(horizontal = 12.dp)
     ) {
         Row(
-            Modifier
-                .fillMaxWidth()
-                .padding(vertical = paddingVertical),
+            Modifier.fillMaxWidth().padding(vertical = paddingVertical),
             horizontalArrangement = Arrangement.Absolute.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TableCell(
+            Text(
                 text = InputHelper.labelTable1Col1,
-                weight = columnWeight[0],
-                modifier = Modifier.padding(0.dp),
-                alignment = TextAlign.Left,
-                title = true
+                modifier = Modifier.weight(columnWeight[0]),
+                textAlign = TextAlign.Left,
+                style = titleTypography
             )
-            TableCell(
+            Text(
                 text = InputHelper.labelTable1Col2,
-                modifier = Modifier.padding(0.dp),
-                weight = columnWeight[1],
-                title = true
+                textAlign = TextAlign.Center,
+                modifier = Modifier.weight(columnWeight[1]),
+                style = titleTypography,
             )
-            TableCell(
+            Text(
                 text = InputHelper.labelTable1Col3,
-                weight = columnWeight[2],
-                modifier = Modifier.padding(0.dp),
-                title = true
+                modifier = Modifier.weight(columnWeight[2]),
+                textAlign = TextAlign.Center,
+                style = titleTypography,
             )
-            TableCell(
-                modifier = Modifier.padding(0.dp),
+            Text(
+                modifier = Modifier.weight(columnWeight[3]),
                 text = InputHelper.labelTable1Col4,
-                weight = columnWeight[3],
-                title = true
+                textAlign = TextAlign.Center,
+                style = titleTypography,
             )
-            TableCell(
-                modifier = Modifier.padding(0.dp),
+            Text(
+                modifier = Modifier.weight(columnWeight[4]),
                 text = InputHelper.labelTable1Col5,
-                weight = columnWeight[4],
-                alignment = TextAlign.Right,
-                title = true
+                style = titleTypography,
+                textAlign = TextAlign.Right,
             )
         }
         Divider(
-            color = Color.LightGray, modifier = Modifier
-                .height(1.dp)
-                .fillMaxWidth()
+            color = Color.LightGray, modifier = Modifier.height(1.dp).fillMaxWidth()
         )
 
         List(5) { "G${it + 1}" }.forEachIndexed { index, title ->
             Row(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = paddingVertical),
+                Modifier.fillMaxWidth().padding(vertical = paddingVertical),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                TableCell(
+                Text(
+                    style = bodyTypography,
                     text = title,
-                    weight = columnWeight[0],
-                    alignment = TextAlign.Left
+                    modifier = Modifier.weight(columnWeight[0]),
+                    textAlign = TextAlign.Left
                 )
-                TableCell(
+                Text(
                     text = calculator.G[index].toString(),
-                    weight = columnWeight[1],
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(columnWeight[1]),
+                    style = bodyTypography,
                     color = MaterialTheme.colorScheme.secondary,
                 )
-                TableCell(
+                Text(
                     text = "%.2f".format(calculator.membershipAlpha[index]),
+                    textAlign = TextAlign.Center,
+                    style = bodyTypography,
                     color = MaterialTheme.colorScheme.primary,
-                    weight = columnWeight[2]
+                    modifier = Modifier.weight(columnWeight[2]),
                 )
-                TableCell(
+                Text(
+                    style = bodyTypography,
+                    textAlign = TextAlign.Center,
                     text = calculator.T[index].toString(),
+                    modifier = Modifier.weight(columnWeight[3]),
                     color = MaterialTheme.colorScheme.secondary,
-                    weight = columnWeight[3],
                 )
-                TableCell(
+                Text(
                     text = "%.2f".format(calculator.membershipAlphaDesired[index]),
+                    style = bodyTypography,
+                    textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.primary,
-                    weight = columnWeight[4],
-//                    alignment = TextAlign.Right
+                    modifier = Modifier.weight(columnWeight[4]),
+//                    textAlign = TextAlign.Right
                 )
             }
             Divider(
-                color = Color.LightGray, modifier = Modifier
-                    .height(1.dp)
+                color = Color.LightGray, modifier = Modifier.height(1.dp)
 //                    .fillMaxHeight()
                     .fillMaxWidth()
             )

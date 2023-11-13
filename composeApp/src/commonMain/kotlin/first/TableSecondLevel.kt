@@ -1,4 +1,4 @@
-package org.example.project.first
+package first
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,15 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import components.TableCell
-import first.InputHelper
 import utils.FirstAlgorithm
 
 @Composable
-fun TableSecondLevel(calculator: FirstAlgorithm) {
+fun TableSecondLevel(
+    calculator: FirstAlgorithm,
+    titleTypography: TextStyle = MaterialTheme.typography.titleMedium,
+    bodyTypography: TextStyle = MaterialTheme.typography.bodyMedium,
+) {
 
     Text(
         text = InputHelper.labelTable2,
@@ -39,57 +42,50 @@ fun TableSecondLevel(calculator: FirstAlgorithm) {
         Modifier.padding(horizontal = 16.dp)
     ) {
         Row(
-            Modifier
-                .fillMaxWidth()
-                .padding(vertical = paddingVertical),
+            Modifier.fillMaxWidth().padding(vertical = paddingVertical),
             horizontalArrangement = Arrangement.Absolute.SpaceAround,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            TableCell(
+            Text(
                 text = InputHelper.labelTable2Col1,
-                weight = columnWeight[0],
-                modifier = Modifier.padding(0.dp),
-//                    alignment = TextAlign.Left,
-                title = true
+                modifier = Modifier.weight(columnWeight[0]),
+                textAlign = TextAlign.Center,
+                style = titleTypography,
             )
-            TableCell(
+            Text(
+                textAlign = TextAlign.Center,
                 text = InputHelper.labelTable2Col2,
-                modifier = Modifier.padding(0.dp),
-                weight = columnWeight[1],
-                title = true
+                modifier = Modifier.weight(columnWeight[1]),
+                style = titleTypography,
             )
         }
         Divider(
-            color = Color.LightGray, modifier = Modifier
-                .height(1.dp)
-                .fillMaxWidth()
+            color = Color.LightGray, modifier = Modifier.height(1.dp).fillMaxWidth()
         )
 
         List(5) { "U${it + 1}" }.forEachIndexed { index, title ->
             Row(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = paddingVertical),
+                Modifier.fillMaxWidth().padding(vertical = paddingVertical),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                TableCell(
+                Text(
                     text = title,
-                    weight = columnWeight[0],
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.weight(columnWeight[0]),
 //                    alignment = TextAlign.Left
                 )
-                TableCell(
+                Text(
                     text = calculator.calculatedU[index].map { (k, v) ->
                         "U$k=" + "%.2f".format(v)
                     }.joinToString(separator = InputHelper.labelTable2Delimiter),
+                    modifier = Modifier.weight(columnWeight[1]),
                     color = MaterialTheme.colorScheme.primary,
-                    weight = columnWeight[1]
+                    textAlign = TextAlign.Center,
                 )
             }
 
             Divider(
-                color = Color.LightGray, modifier = Modifier
-                    .height(1.dp)
-                    .fillMaxWidth()
+                color = Color.LightGray, modifier = Modifier.height(1.dp).fillMaxWidth()
             )
         }
     }

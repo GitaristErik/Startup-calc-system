@@ -22,12 +22,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import components.TableOneRow
 import first.InputHelper
+import first.TableFirstLevel
+import first.TableSecondLevel
 import kotlinx.coroutines.launch
 import org.example.project.first.InputComponent
-import org.example.project.first.TableFirstLevel
-import components.TableOneRow
-import org.example.project.first.TableSecondLevel
 import utils.FirstAlgorithm
 import utils.FirstAlgorithm.M
 
@@ -80,11 +80,19 @@ fun FirstScreen() {
         P = stateMapInputData["P"]!!.value
     )
 
-    TableFirstLevel(calculator)
+    TableFirstLevel(
+        calculator,
+        titleTypography = MaterialTheme.typography.titleSmall,
+        bodyTypography = MaterialTheme.typography.bodyMedium
+    )
 
     Spacer(modifier = Modifier.height(16.dp))
 
-    TableSecondLevel(calculator)
+    TableSecondLevel(
+        calculator,
+        titleTypography = MaterialTheme.typography.titleSmall,
+        bodyTypography = MaterialTheme.typography.bodyMedium
+    )
 
     Spacer(modifier = Modifier.height(16.dp))
 
