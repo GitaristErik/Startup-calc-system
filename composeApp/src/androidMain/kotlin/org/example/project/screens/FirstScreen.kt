@@ -16,7 +16,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
@@ -26,7 +25,6 @@ import components.TableOneRow
 import first.InputHelper
 import first.TableFirstLevel
 import first.TableSecondLevel
-import kotlinx.coroutines.launch
 import org.example.project.first.InputComponent
 import utils.FirstAlgorithm
 import utils.FirstAlgorithm.M
@@ -47,13 +45,7 @@ fun FirstScreen() {
     ).mapValues {
         remember { mutableStateOf(it.value) }
     }.toMutableMap().onEach { (_, v) ->
-        LaunchedEffect(Unit) {
-            launch {
-                snapshotFlow { v.value }
-//                    .distinctUntilChanged()
-                    .collect { stateCalcPressed = false }
-            }
-        }
+        LaunchedEffect(v.value) { stateCalcPressed = false }
     }
 
     InputComponent(stateMap = stateMapInputData)
