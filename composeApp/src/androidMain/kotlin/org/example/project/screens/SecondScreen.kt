@@ -18,7 +18,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment.Companion
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
@@ -42,7 +41,7 @@ fun SecondScreen() {
         list.map { (l, d) -> remember { mutableStateOf(l to d) } }
     }.onEachIndexed { index, list ->
         list.forEach { state ->
-            LaunchedEffect(state) { stateCalcPressed = false }
+            LaunchedEffect(state.value) { stateCalcPressed = false }
         }
 
         ListInputAndMenuComponent(list, label = StringsData.labelsK[index].second, prefix = {
@@ -85,7 +84,9 @@ fun SecondScreen() {
 
     if (!stateCalcPressed) return
 
-    val calculator = SecondAlgorithm()
+    val calculator = SecondAlgorithm(
+        K = stateInputData.map { list -> list.map { it.value } }
+    )
 
 
     Column(

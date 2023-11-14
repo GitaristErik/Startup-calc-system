@@ -39,9 +39,9 @@ fun SecondScreen() {
 
     val stateInputData: List<List<MutableState<Pair<L, Double>>>> = StringsData.K.map { list ->
         list.map { (l, d) -> remember { mutableStateOf(l to d) } }
-    }.onEachIndexed { index, list ->
+    }.onEachIndexed { _, list ->
         list.forEach { state ->
-            LaunchedEffect(state) { stateCalcPressed = false }
+            LaunchedEffect(state.value) { stateCalcPressed = false }
         }
     }
 
@@ -95,7 +95,9 @@ fun SecondScreen() {
 
     if (!stateCalcPressed) return
 
-    val calculator = SecondAlgorithm()
+    val calculator = SecondAlgorithm(
+        K = stateInputData.map { list -> list.map { it.value } }
+    )
 
     Row(
         modifier = Modifier.padding(horizontal = 16.dp),

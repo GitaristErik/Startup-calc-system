@@ -15,38 +15,38 @@ object StringsData {
         // «операційні ризики»
         listOf(
             L.LOW to 0.8,
-            L.LOW to 0.7,
+            L.LOW_MEDIUM to 0.7,
             L.LOW_MEDIUM to 0.9,
             L.LOW to 0.6,
             L.LOW_MEDIUM to 0.7,
             L.MEDIUM to 0.5,
             L.LOW to 0.7,
             L.LOW to 0.8,
-            L.LOW to 0.8,
+            L.LOW to 0.9,
         ),
         // «інвестиційні ризики»
         listOf(
-            L.LOW_MEDIUM to 0.7,
+            L.LOW to 0.7,
             L.LOW to 0.5,
             L.MEDIUM to 0.6,
-            L.LOW_MEDIUM to 0.8,
-            L.LOW_MEDIUM to 0.9,
+            L.LOW to 0.8,
+            L.HIGH_MEDIUM to 0.9,
         ),
         // «фінансові ризики»
         listOf(
-            L.LOW_MEDIUM to 0.3,
+            L.MEDIUM to 0.3,
             L.LOW_MEDIUM to 0.6,
             L.LOW_MEDIUM to 0.2,
-            L.LOW to 0.7,
-            L.LOW to 0.6,
+            L.HIGH_MEDIUM to 0.5,
+            L.LOW_MEDIUM to 0.6,
         ),
         // «ризики інноваційної діяльності»
         listOf(
-            L.LOW to 0.8,
-            L.LOW to 0.9,
-            L.LOW_MEDIUM to 0.1,
-            L.LOW_MEDIUM to 0.7,
-            L.LOW_MEDIUM to 0.6,
+            L.LOW_MEDIUM to 0.8,
+            L.HIGH to 0.4,
+            L.MEDIUM to 0.1,
+            L.LOW_MEDIUM to 0.3,
+            L.LOW_MEDIUM to 0.5,
         ),
     )
 
@@ -58,7 +58,7 @@ object StringsData {
 
     val labelTable1 = "Визначення результуючої терм-оцінки."
     val labelTable1Col1 = "Групи критеріїв"
-    val labelTable1Col2 = "Результуюча терм-оцінка"
+    val labelTable1Col2 = "Результуюча\nтерм-оцінка"
     val labelTable1Col3 = "Агрегована оцінка"
 
     val labelTable2 = "Узагальнена оцінка ризику проекту для груп критеріїв α"
