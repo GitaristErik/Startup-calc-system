@@ -25,16 +25,16 @@ fun InputComponent(
 
         ListInputsComponent(
             state = stateMap["G"]!!,
-            label = InputHelper.labelG,
+            label = StringsData.labelG,
             modifier = Modifier
 //                .padding(all = 8.dp)
                 .weight(.3f),
-            arrayLabels = InputHelper.arrayLabelsG
+            arrayLabels = StringsData.arrayLabelsG
         )
 
         ListInputsComponent(
             state = stateMap["T"]!!,
-            label = InputHelper.labelT,
+            label = StringsData.labelT,
             modifier = Modifier
 //                .padding(all = 8.dp)
 //                .align(Alignment.Bottom)
@@ -55,10 +55,10 @@ fun InputComponent(
         )
             .zip(
                 listOf(
-                    InputHelper.labelA,
-                    InputHelper.labelB,
-                    InputHelper.labelU,
-                    InputHelper.labelP
+                    StringsData.labelA,
+                    StringsData.labelB,
+                    StringsData.labelU,
+                    StringsData.labelP
                 )
             )
             .forEach { (state, label) ->

@@ -27,7 +27,7 @@ fun TableSecondLevel(
 ) {
 
     Text(
-        text = InputHelper.labelTable2,
+        text = StringsData.labelTable2,
         modifier = Modifier.padding(16.dp),
         style = MaterialTheme.typography.titleLarge,
         textAlign = TextAlign.Center,
@@ -47,14 +47,14 @@ fun TableSecondLevel(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = InputHelper.labelTable2Col1,
+                text = StringsData.labelTable2Col1,
                 modifier = Modifier.weight(columnWeight[0]),
                 textAlign = TextAlign.Center,
                 style = titleTypography,
             )
             Text(
                 textAlign = TextAlign.Center,
-                text = InputHelper.labelTable2Col2,
+                text = StringsData.labelTable2Col2,
                 modifier = Modifier.weight(columnWeight[1]),
                 style = titleTypography,
             )
@@ -71,16 +71,18 @@ fun TableSecondLevel(
                 Text(
                     text = title,
                     textAlign = TextAlign.Center,
+                    style = bodyTypography,
                     modifier = Modifier.weight(columnWeight[0]),
 //                    alignment = TextAlign.Left
                 )
                 Text(
                     text = calculator.calculatedU[index].map { (k, v) ->
                         "U$k=" + "%.2f".format(v)
-                    }.joinToString(separator = InputHelper.labelTable2Delimiter),
+                    }.joinToString(separator = StringsData.labelTable2Delimiter),
                     modifier = Modifier.weight(columnWeight[1]),
                     color = MaterialTheme.colorScheme.primary,
                     textAlign = TextAlign.Center,
+                    style = bodyTypography,
                 )
             }
 

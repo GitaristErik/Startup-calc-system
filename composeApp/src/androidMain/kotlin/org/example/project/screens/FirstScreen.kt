@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import components.TableOneRow
-import first.InputHelper
+import first.StringsData
 import first.TableFirstLevel
 import first.TableSecondLevel
 import org.example.project.first.InputComponent
@@ -36,12 +36,12 @@ fun FirstScreen() {
     var stateCalcPressed by remember { mutableStateOf(false) }
 
     val stateMapInputData = mapOf(
-        "G" to InputHelper.arrayG,
-        "A" to InputHelper.arrayA,
-        "B" to InputHelper.arrayB,
-        "T" to InputHelper.arrayT,
-        "U" to InputHelper.arrayU,
-        "P" to InputHelper.arrayP
+        "G" to StringsData.arrayG,
+        "A" to StringsData.arrayA,
+        "B" to StringsData.arrayB,
+        "T" to StringsData.arrayT,
+        "U" to StringsData.arrayU,
+        "P" to StringsData.arrayP
     ).mapValues {
         remember { mutableStateOf(it.value) }
     }.toMutableMap().onEach { (_, v) ->
@@ -54,7 +54,7 @@ fun FirstScreen() {
         onClick = { stateCalcPressed = true },
         enabled = !stateCalcPressed
     ) {
-        Text(text = InputHelper.labelCalculate)
+        Text(text = StringsData.labelCalculate)
     }
 
 //    PrintInputs(stateMap = stateMapInputData)
@@ -92,7 +92,7 @@ fun FirstScreen() {
         items = calculator.scoresByCriterias.mapIndexed { index, item ->
             "G${index + 1}" to "%.2f".format(item)
         }.toMap(),
-        tableLabel = InputHelper.labelTable3
+        tableLabel = StringsData.labelTable3
     )
 
     Spacer(modifier = Modifier.height(16.dp))
@@ -101,14 +101,14 @@ fun FirstScreen() {
         items = calculator.normalizedP.mapIndexed { index, item ->
             "P${index + 1}" to "%.2f".format(item)
         }.toMap(),
-        tableLabel = InputHelper.labelTable4
+        tableLabel = StringsData.labelTable4
     )
 
     Spacer(modifier = Modifier.height(16.dp))
 
     Row {
         Text(
-            text = "${InputHelper.aggregatedScore}: ",
+            text = "${StringsData.aggregatedScore}: ",
             modifier = Modifier.padding(16.dp),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Left,
@@ -129,7 +129,7 @@ fun FirstScreen() {
 
     Row {
         Text(
-            text = "${InputHelper.result}: ",
+            text = "${StringsData.result}: ",
             modifier = Modifier.padding(16.dp),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Left,

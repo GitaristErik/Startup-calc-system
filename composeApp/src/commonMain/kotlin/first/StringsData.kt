@@ -1,6 +1,6 @@
 package first
 
-object InputHelper {
+object StringsData {
 
     val labelG = "Групи критеріїв"
     val arrayLabelsG = listOf<String>(

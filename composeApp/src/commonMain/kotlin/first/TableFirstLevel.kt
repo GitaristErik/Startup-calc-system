@@ -27,7 +27,7 @@ fun TableFirstLevel(
 ) {
 
     Text(
-        text = InputHelper.labelTable1,
+        text = StringsData.labelTable1,
         modifier = Modifier.padding(16.dp),
         style = MaterialTheme.typography.titleLarge,
         textAlign = TextAlign.Center,
@@ -47,32 +47,32 @@ fun TableFirstLevel(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = InputHelper.labelTable1Col1,
+                text = StringsData.labelTable1Col1,
                 modifier = Modifier.weight(columnWeight[0]),
                 textAlign = TextAlign.Left,
                 style = titleTypography
             )
             Text(
-                text = InputHelper.labelTable1Col2,
+                text = StringsData.labelTable1Col2,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(columnWeight[1]),
                 style = titleTypography,
             )
             Text(
-                text = InputHelper.labelTable1Col3,
+                text = StringsData.labelTable1Col3,
                 modifier = Modifier.weight(columnWeight[2]),
                 textAlign = TextAlign.Center,
                 style = titleTypography,
             )
             Text(
                 modifier = Modifier.weight(columnWeight[3]),
-                text = InputHelper.labelTable1Col4,
+                text = StringsData.labelTable1Col4,
                 textAlign = TextAlign.Center,
                 style = titleTypography,
             )
             Text(
                 modifier = Modifier.weight(columnWeight[4]),
-                text = InputHelper.labelTable1Col5,
+                text = StringsData.labelTable1Col5,
                 style = titleTypography,
                 textAlign = TextAlign.Right,
             )

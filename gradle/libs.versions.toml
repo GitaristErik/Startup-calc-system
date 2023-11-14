@@ -22,6 +22,7 @@ kotlinx-datetime = "0.4.0"
 kotlinx-serialization = "1.5.1"
 
 junit = "4.13.2"
+foundationLayoutAndroid = "1.5.4"
 
 [libraries]
 androidx-compose-windowsizeclass = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "androidx-compose-material3" }
@@ -50,6 +51,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
 androidx-ui-tooling-preview-desktop = { group = "androidx.compose.ui", name = "ui-tooling-preview-desktop", version = "1.6.0-alpha08" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version = "1.5.4" }
+androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

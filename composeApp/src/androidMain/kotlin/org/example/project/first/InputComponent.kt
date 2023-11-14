@@ -10,7 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import components.ListInputsComponent
-import first.InputHelper
+import first.StringsData
 
 @Composable
 fun InputComponent(
@@ -20,11 +20,11 @@ fun InputComponent(
 
     ListInputsComponent(
         state = stateMap["G"]!!,
-        label = InputHelper.labelG,
+        label = StringsData.labelG,
         modifier = Modifier
             .fillMaxWidth()
             .padding(all = 8.dp),
-        arrayLabels = InputHelper.arrayLabelsG
+        arrayLabels = StringsData.arrayLabelsG
     )
 
     // ----------
@@ -35,14 +35,14 @@ fun InputComponent(
 
         ListInputsComponent(
             state = stateMap["A"]!!,
-            label = InputHelper.labelA,
+            label = StringsData.labelA,
             modifier = Modifier
                 .align(Alignment.Bottom)
                 .weight(1f)
         )
         ListInputsComponent(
             state = stateMap["B"]!!,
-            label = InputHelper.labelB,
+            label = StringsData.labelB,
             modifier = Modifier
                 .align(Alignment.Bottom)
                 .weight(1f)
@@ -55,7 +55,7 @@ fun InputComponent(
         horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         listOf(stateMap["T"]!!, stateMap["U"]!!, stateMap["P"]!!)
-            .zip(listOf(InputHelper.labelT, InputHelper.labelU, InputHelper.labelP))
+            .zip(listOf(StringsData.labelT, StringsData.labelU, StringsData.labelP))
             .forEach { (state, label) ->
                 ListInputsComponent(
                     state = state,

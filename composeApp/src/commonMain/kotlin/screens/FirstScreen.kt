@@ -26,7 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import components.TableOneRow
 import first.InputComponent
-import first.InputHelper
+import first.StringsData
 import first.TableFirstLevel
 import first.TableSecondLevel
 import utils.FirstAlgorithm
@@ -38,12 +38,12 @@ fun FirstScreen() {
     var stateCalcPressed by remember { mutableStateOf(false) }
 
     val stateMapInputData = mapOf(
-        "G" to InputHelper.arrayG,
-        "A" to InputHelper.arrayA,
-        "B" to InputHelper.arrayB,
-        "T" to InputHelper.arrayT,
-        "U" to InputHelper.arrayU,
-        "P" to InputHelper.arrayP
+        "G" to StringsData.arrayG,
+        "A" to StringsData.arrayA,
+        "B" to StringsData.arrayB,
+        "T" to StringsData.arrayT,
+        "U" to StringsData.arrayU,
+        "P" to StringsData.arrayP
     ).mapValues {
         remember { mutableStateOf(it.value) }
     }.toMutableMap().onEach { (_, v) ->
@@ -56,7 +56,7 @@ fun FirstScreen() {
         onClick = { stateCalcPressed = true },
         enabled = !stateCalcPressed
     ) {
-        Text(text = InputHelper.labelCalculate)
+        Text(text = StringsData.labelCalculate)
     }
 
 //    PrintInputs(stateMap = stateMapInputData)
@@ -94,7 +94,7 @@ fun FirstScreen() {
                 items = calculator.scoresByCriterias.mapIndexed { index, item ->
                     "G${index + 1}" to "%.2f".format(item)
                 }.toMap(),
-                tableLabel = InputHelper.labelTable3
+                tableLabel = StringsData.labelTable3
             )
         }
 
@@ -103,7 +103,7 @@ fun FirstScreen() {
                 items = calculator.normalizedP.mapIndexed { index, item ->
                     "P${index + 1}" to "%.2f".format(item)
                 }.toMap(),
-                tableLabel = InputHelper.labelTable4
+                tableLabel = StringsData.labelTable4
             )
         }
     }
@@ -116,7 +116,7 @@ fun FirstScreen() {
 
         val weightList = listOf(.25f, .1f, .15f, .3f)
         Text(
-            text = "${InputHelper.aggregatedScore}: ",
+            text = "${StringsData.aggregatedScore}: ",
             modifier = Modifier.padding(16.dp).weight(weightList[0]),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Left,
@@ -135,7 +135,7 @@ fun FirstScreen() {
         Spacer(modifier = Modifier.width(spacerWidth))
 
         Text(
-            text = "${InputHelper.result}: ",
+            text = "${StringsData.result}: ",
             modifier = Modifier.padding(16.dp).weight(weightList[2]),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Right,
