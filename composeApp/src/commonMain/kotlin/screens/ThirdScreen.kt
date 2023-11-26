@@ -1,9 +1,97 @@
 package screens
 
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.unit.dp
+import components.CalculateButtonComponent
+import components.ListInputsAndMenuComponent
+import third.CalculatedNeuroComponent
+import third.DePhasingResultComponent
+import third.StringsData
+import third.TablePhasingComponent
+import utils.ThirdAlgorithm
 
 @Composable
 fun ThirdScreen() {
-    Text("Third Screen")
+
+    val stateCalcPressed = remember { mutableStateOf(false) }
+
+    val stateInputData: Map<String, List<MutableState<Triple<ThirdAlgorithm.L?, Double?, Int>>>> =
+        StringsData.defaultData.map { (key, list) ->
+            key to list.map {
+                remember { mutableStateOf(it) }.also {
+                    LaunchedEffect(it.value) { stateCalcPressed.value = false }
+                }
+            }
+        }.toMap()
+
+    ListInputsAndMenuComponent(stateInputData, Modifier.padding(horizontal = 8.dp))
+
+    CalculateButtonComponent(stateCalcPressed)
+
+    if (!stateCalcPressed.value) return
+
+
+    val makeSpacer2: @Composable () -> Unit =
+        { Spacer(modifier = Modifier.height(32.dp).width(32.dp)) }
+
+    val calculator = ThirdAlgorithm()
+
+
+    Row {
+        Column(
+            modifier = Modifier.weight(.5f),
+            verticalArrangement = Arrangement.spacedBy(4.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+
+            val itemsX = StringsData.defaultData.flatMap { (_, v) ->
+                v.mapNotNull { it.second?.toString() }
+            }
+
+            TablePhasingComponent(itemsX)
+        }
+
+
+        Column(
+            modifier = Modifier.weight(.5f),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+
+            val calculatedValue = 0.098765
+            CalculatedNeuroComponent(calculatedValue)
+
+            makeSpacer2()
+
+            DePhasingResultComponent(
+                teamRate = calculator.teamRate,
+                setShadow = {
+                    shadow(
+                        elevation = 5.dp,
+                        shape = MaterialTheme.shapes.extraLarge,
+                        ambientColor = MaterialTheme.colorScheme.tertiaryContainer,
+                        spotColor = MaterialTheme.colorScheme.onTertiaryContainer
+                    )
+                }
+            )
+        }
+    }
+    makeSpacer2()
 }

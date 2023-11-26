@@ -36,7 +36,7 @@ fun HomeScreen(screenProvider: ScreenProvider) {
         when (navItemState) {
             NavItem.First -> screenProvider.firstScreen()
             NavItem.Second -> screenProvider.secondScreen()
-            NavItem.Third -> screenProvider.thirdScreen()
+            NavItem.Third -> screenProvider.thirdScreen.invoke(this)
         }
     }
 }

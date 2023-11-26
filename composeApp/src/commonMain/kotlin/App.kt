@@ -1,3 +1,4 @@
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -20,39 +21,12 @@ fun App(
         @Composable
         override fun secondScreen() = SecondScreen()
 
-        @Composable
-        override fun thirdScreen() = ThirdScreen()
+        override val thirdScreen: @Composable (ColumnScope.() -> Unit)
+            get() = { ThirdScreen() }
 
     }
 ) {
-    MaterialTheme {/*
-        var greetingText by remember { mutableStateOf("Hello World!") }
-        var showImage by remember { mutableStateOf(false) }
-        var navItemState by remember { mutableStateOf(NavItem.First) }
-
-        Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-            *//*Button(onClick = {
-                greetingText = "Compose: ${Greeting().greet()}"
-                showImage = !showImage
-            }) {
-                Text(greetingText)
-            }
-
-            AnimatedVisibility(showImage) {
-                Image(
-                    painterResource("compose-multiplatform.xml"),
-                    null
-                )
-            }
-
-            TabsComponent(
-                currentTab = navItemState,
-                onTabSelected = { navItemState = it }
-            )
-            *//*
-
-        }*/
-
+    MaterialTheme {
         Surface(
             modifier = Modifier.fillMaxSize(),
             color = MaterialTheme.colorScheme.surface

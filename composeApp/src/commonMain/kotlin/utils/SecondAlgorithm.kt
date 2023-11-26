@@ -11,31 +11,49 @@ class SecondAlgorithm(
     val K: List<List<Pair<L, Double>>>,
 ) {
 
-    enum class L(
-        val title: String, val description: String = "", val imageIcon: ImageVector? = null
-    ) {
-
-        LOW(
-            "Н", "Низький рівень ризику", Icons.Outlined.TrendingUp
-        ),
-
-        LOW_MEDIUM(
-            "НС", "Рівень ризику нижче середнього", Icons.Outlined.TrendingUp
-        ),
-
-        MEDIUM(
-            "С", "Середній рівень ризику", Icons.Outlined.TrendingFlat
-        ),
-
-        HIGH_MEDIUM(
-            "ВС", "Рівень ризику вище середнього", Icons.Outlined.TrendingDown
-        ),
-
-        HIGH(
-            "В", "Високий рівень ризику", Icons.Outlined.TrendingDown
-        ),
+    interface BaseLEnum {
+        val title: String
+        val description: String
     }
 
+    fun interface IconLEnum {
+        fun getImageIcon(): ImageVector?
+    }
+
+    enum class L(
+        override val title: String, override val description: String = ""
+    ) : BaseLEnum, IconLEnum {
+
+        LOW(
+            "Н", "Низький рівень ризику",
+        ) {
+            override fun getImageIcon() = Icons.Outlined.TrendingUp
+        },
+
+        LOW_MEDIUM(
+            "НС", "Рівень ризику нижче середнього"
+        ) {
+            override fun getImageIcon() = Icons.Outlined.TrendingUp
+        },
+
+        MEDIUM(
+            "С", "Середній рівень ризику"
+        ) {
+            override fun getImageIcon() = Icons.Outlined.TrendingFlat
+        },
+
+        HIGH_MEDIUM(
+            "ВС", "Рівень ризику вище середнього",
+        ) {
+            override fun getImageIcon() = Icons.Outlined.TrendingDown
+        },
+
+        HIGH(
+            "В", "Високий рівень ризику",
+        ) {
+            override fun getImageIcon() = Icons.Outlined.TrendingDown
+        },
+    }
 
     /**
      * Calculating the resulting term estimate of the group of criteria

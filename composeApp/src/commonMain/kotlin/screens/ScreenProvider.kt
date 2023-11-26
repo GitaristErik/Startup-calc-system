@@ -1,5 +1,6 @@
 package screens
 
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 
 interface ScreenProvider {
@@ -10,6 +11,5 @@ interface ScreenProvider {
     @Composable
     fun secondScreen()
 
-    @Composable
-    fun thirdScreen()
+    val thirdScreen: @Composable ColumnScope.() -> Unit
 }

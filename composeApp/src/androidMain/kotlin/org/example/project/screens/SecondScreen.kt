@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import components.LabelWithIndexes
 import components.ListInputAndMenuComponent
 import components.TableColumn
 import components.TableComponent
@@ -31,6 +32,7 @@ import components.TableOneRow
 import second.StringsData
 import utils.SecondAlgorithm
 import utils.SecondAlgorithm.L
+import utils.ThirdAlgorithm.Y_LINGUISTIC.Companion.prefix
 
 @Composable
 fun SecondScreen() {
@@ -44,29 +46,17 @@ fun SecondScreen() {
             LaunchedEffect(state.value) { stateCalcPressed = false }
         }
 
-        ListInputAndMenuComponent(list, label = StringsData.labelsK[index].second, prefix = {
-            Row {
-                val makeText: @Composable (String, Boolean) -> Unit = { text, isTitle ->
-                    Text(
-                        text = text,
-                        style = if (isTitle) MaterialTheme.typography.titleLarge else MaterialTheme.typography.labelSmall,
-                        color = MaterialTheme.colorScheme.tertiary,
-                        fontStyle = FontStyle.Italic
-                    )
-                }
-                makeText("K", true)
-                Column(verticalArrangement = Arrangement.Center) {
-                    makeText(StringsData.labelsK[index].first, false)
-//                    Spacer(modifier = Modifier.height(4.dp))
-                    makeText("${it + 1}", false)
-                }
-                Text(
-                    "= ",
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.tertiary
+        ListInputAndMenuComponent(
+            list,
+            label = StringsData.labelsK[index].second,
+            prefix = {
+                LabelWithIndexes(
+                    label = "K",
+                    indexTop = StringsData.labelsK[index].first,
+                    indexBottom = "${it + 1}"
                 )
             }
-        })
+        )
     }
 
 
@@ -78,7 +68,7 @@ fun SecondScreen() {
         onClick = { stateCalcPressed = true },
         enabled = !stateCalcPressed
     ) {
-        Text(text = first.StringsData.labelCalculate)
+        Text(text = second.StringsData.labelCalculate)
     }
     makeSpacer()
 

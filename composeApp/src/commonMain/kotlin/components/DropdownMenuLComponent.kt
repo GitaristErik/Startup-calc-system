@@ -2,10 +2,7 @@ package components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredWidth
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,18 +25,21 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import second.StringsData
+import third.StringsData
 import utils.SecondAlgorithm
+import kotlin.enums.enumEntries
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalStdlibApi::class)
 @Composable
-fun DropdownMenuLComponent(
-    selectedItem: SecondAlgorithm.L,
+inline fun <reified T> DropdownMenuLComponent(
+    selectedItem: T,
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.extraSmall,
     isOutlinedMenu: Boolean = false,
-    onSelect: (SecondAlgorithm.L) -> Unit = {},
-) {
+    crossinline onSelect: (T) -> Unit = {},
+) where T : Enum<T>,
+        T : SecondAlgorithm.BaseLEnum,
+        T : SecondAlgorithm.IconLEnum {
 
     var expanded by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState()
@@ -69,7 +69,7 @@ fun DropdownMenuLComponent(
                 },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 leadingIcon = {
-                    selectedItem.imageIcon?.let { image ->
+                    selectedItem.getImageIcon()?.let { image ->
                         Icon(image, contentDescription = null)
                     }
                 },
@@ -98,7 +98,7 @@ fun DropdownMenuLComponent(
                 },
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 leadingIcon = {
-                    selectedItem.imageIcon?.let { image ->
+                    selectedItem.getImageIcon()?.let { image ->
                         Icon(image, contentDescription = null)
                     }
                 },
@@ -133,7 +133,7 @@ fun DropdownMenuLComponent(
             )
 
 
-            SecondAlgorithm.L.entries.forEach { l ->
+            enumEntries<T>().forEach { l ->
                 DropdownMenuItem(
                     text = { Text("${l.title}: ${l.description}") },
                     onClick = {
@@ -141,7 +141,7 @@ fun DropdownMenuLComponent(
                         expanded = false
                     },
                     leadingIcon = {
-                        l.imageIcon?.let { image -> Icon(image, contentDescription = null) }
+                        l.getImageIcon()?.let { image -> Icon(image, contentDescription = null) }
                     },
                     contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
                 )
