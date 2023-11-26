@@ -24,6 +24,7 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import components.LabelWithIndexes
 import components.ListInputAndMenuComponent
 import components.TableColumn
 import components.TableComponent
@@ -54,28 +55,13 @@ fun SecondScreen() {
                     list,
                     label = StringsData.labelsK[index].second,
                     prefix = {
-                        Row {
-                            val makeText: @Composable (String, Boolean) -> Unit = { text, isTitle ->
-                                Text(
-                                    text = text,
-                                    style = if (isTitle) MaterialTheme.typography.titleLarge else MaterialTheme.typography.labelSmall,
-                                    color = MaterialTheme.colorScheme.tertiary,
-                                    fontStyle = FontStyle.Italic
-                                )
-                            }
-                            makeText("K", true)
-                            Column(verticalArrangement = Arrangement.Center) {
-                                makeText(StringsData.labelsK[index].first, false)
-//                    Spacer(modifier = Modifier.height(4.dp))
-                                makeText("${it + 1}", false)
-                            }
-                            Text(
-                                "= ",
-                                style = MaterialTheme.typography.titleLarge,
-                                color = MaterialTheme.colorScheme.tertiary
-                            )
-                        }
-                    })
+                        LabelWithIndexes(
+                            label = "K",
+                            indexTop = StringsData.labelsK[index].first,
+                            indexBottom = "${it + 1}"
+                        )
+                    }
+                )
             }
         }
 
