@@ -45,7 +45,7 @@ fun InputAndMenuComponent(
         DropdownMenuLComponent(
             state.value.first,
             shape = RoundedCornerShape(topEnd = cornerRound, bottomEnd = cornerRound),
-//            isOutlinedMenu = true,
+            isOutlinedMenu = isOutlinedMenu,
             modifier = Modifier
                 .weight(.2f)
 //                .wrapContentWidth()
