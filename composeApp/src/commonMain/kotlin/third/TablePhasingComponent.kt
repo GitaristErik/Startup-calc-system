@@ -20,7 +20,7 @@ import components.TableComponent
 import utils.ThirdAlgorithm
 
 @Composable
-fun ColumnScope.TablePhasingComponent(valuesX: List<String>) {
+fun ColumnScope.TablePhasingComponent(valuesX: List<Double>) {
 
     Text(
         text = StringsData.labelTable1,
@@ -59,7 +59,7 @@ fun ColumnScope.TablePhasingComponent(valuesX: List<String>) {
                 ),
             ),
             items = ThirdAlgorithm.indexedKeysK.mapIndexed { i, it ->
-                listOf(it, valuesX[i]) // zip keys with values X
+                listOf(it, "%.3f".format(valuesX[i])) // zip keys with values X
             },
             modifier = Modifier.padding(vertical = 8.dp, horizontal = 16.dp),
             bodyContent = { columnIndex: Int, item: String ->

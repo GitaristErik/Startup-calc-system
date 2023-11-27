@@ -11,10 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -51,7 +49,9 @@ fun ThirdScreen() {
     val makeSpacer2: @Composable () -> Unit =
         { Spacer(modifier = Modifier.height(32.dp).width(32.dp)) }
 
-    val calculator = ThirdAlgorithm()
+    val calculator = ThirdAlgorithm(
+        stateInputData.mapValues { (_, v) -> v.map { it.value } }
+    )
 
 
     Row {
@@ -61,11 +61,7 @@ fun ThirdScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            val itemsX = StringsData.defaultData.flatMap { (_, v) ->
-                v.mapNotNull { it.second?.toString() }
-            }
-
-            TablePhasingComponent(itemsX)
+            TablePhasingComponent(calculator.calculatedMembershipFlatten)
         }
 
 
@@ -75,8 +71,7 @@ fun ThirdScreen() {
             verticalArrangement = Arrangement.spacedBy(4.dp)
         ) {
 
-            val calculatedValue = 0.098765
-            CalculatedNeuroComponent(calculatedValue)
+            CalculatedNeuroComponent(calculator.defuzzification)
 
             makeSpacer2()
 

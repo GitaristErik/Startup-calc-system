@@ -48,18 +48,15 @@ fun ColumnScope.ThirdScreen() {
                 .width(32.dp)
         )
     }
-    val calculator = ThirdAlgorithm()
+    val calculator = ThirdAlgorithm(
+        stateInputData.mapValues { (_, v) -> v.map { it.value } }
+    )
 
-
-    val itemsX = StringsData.defaultData.flatMap { (_, v) ->
-        v.mapNotNull { it.second?.toString() }
-    }
-    TablePhasingComponent(itemsX)
+    TablePhasingComponent(calculator.calculatedMembershipFlatten)
 
     makeSpacer2()
 
-    val calculatedValue = 0.098765
-    CalculatedNeuroComponent(calculatedValue)
+    CalculatedNeuroComponent(calculator.defuzzification)
 
     makeSpacer2()
 
