@@ -18,8 +18,8 @@ object StringsData {
             "1" to listOf(
                 // Стабільність та згуртованість команди
                 Triple(null, null, 10),
-                Triple(L.HIGH, 0.8, 8),
-                Triple(L.MEDIUM, 0.9, 9),
+                Triple(L.MEDIUM, 0.8, 8),
+                Triple(L.HIGH, 0.9, 9),
             ),
             "2" to listOf(
                 //  Професійні компетенції та досвід команди
@@ -41,10 +41,10 @@ object StringsData {
             "3" to listOf(
                 // Професійна активність команди
                 Triple(null, null, 8),
-                Triple(L.LOW_MEDIUM, 0.8, 8),
-                Triple(L.HIGH, 0.9, 6),
-                Triple(L.HIGH, 0.9, 7),
-                Triple(L.MEDIUM, 0.8, 9),
+                Triple(L.HIGH, 0.8, 8),
+                Triple(L.MEDIUM, 0.7, 6),
+                Triple(L.HIGH, 0.8, 7),
+                Triple(L.HIGH, 0.9, 9),
             )
         )
         /* mapOf(
