@@ -103,7 +103,7 @@ fun FirstScreen() {
                 items = calculator.normalizedP.mapIndexed { index, item ->
                     "P${index + 1}" to "%.2f".format(item)
                 }.toMap(),
-                tableLabel = StringsData.labelTable4
+                tableLabel = StringsData.labelTableFinal
             )
         }
     }
@@ -116,7 +116,7 @@ fun FirstScreen() {
 
         val weightList = listOf(.25f, .1f, .15f, .3f)
         Text(
-            text = "${StringsData.aggregatedScore}: ",
+            text = "${StringsData.labelTableFinal}: ",
             modifier = Modifier.padding(16.dp).weight(weightList[0]),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Left,
@@ -135,7 +135,7 @@ fun FirstScreen() {
         Spacer(modifier = Modifier.width(spacerWidth))
 
         Text(
-            text = "${StringsData.result}: ",
+            text = "${StringsData.labelTableFinal}: ",
             modifier = Modifier.padding(16.dp).weight(weightList[2]),
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Right,

@@ -21,7 +21,7 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(Yes, Yes, Yes, No) to Yes
+                get() = Triple(listOf(Yes, Yes, Yes, No), Yes, 3)
         }
     }
 
@@ -40,12 +40,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Snapdragon8Gen1,
-                    MediaTekDimensity9000,
-                    Exynos1280,
-                    AppleA16Bionic
-                ) to Snapdragon8Gen1
+                get() = Triple(
+                    listOf(
+                        Snapdragon8Gen1,
+                        MediaTekDimensity9000,
+                        Exynos1280,
+                        AppleA16Bionic
+                    ), Snapdragon8Gen1, 9
+                )
         }
     }
 
@@ -63,12 +65,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Android13,
-                    Android11,
-                    Android12,
-                    IOS16
-                ) to Android13
+                get() = Triple(
+                    listOf(
+                        Android13,
+                        Android11,
+                        Android12,
+                        IOS16
+                    ), Android13, 5
+                )
         }
     }
 
@@ -77,25 +81,30 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Price(15000.0),
-                    Price(22000.0),
-                    Price(30000.0),
-                    Price(37000.0)
-                ) to Price(10000.0)
+                get() = Triple(
+                    listOf(
+                        Price(15000.0),
+                        Price(22000.0),
+                        Price(30000.0),
+                        Price(37000.0)
+                    ), Price(10000.0), 6
+                )
         }
     }
 
     data class Rating(override val digitalValue: Double) : Criteria {
         override val localizedName: String = "Рейтинг"
+
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Rating(4.5),
-                    Rating(4.2),
-                    Rating(4.4),
-                    Rating(4.8)
-                ) to Rating(5.0)
+                get() = Triple(
+                    listOf(
+                        Rating(4.5),
+                        Rating(4.2),
+                        Rating(4.4),
+                        Rating(4.8)
+                    ), Rating(5.0), 8
+                )
         }
     }
 
@@ -104,12 +113,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    DisplayDiagonal(6.7),
-                    DisplayDiagonal(6.3),
-                    DisplayDiagonal(6.5),
-                    DisplayDiagonal(6.1)
-                ) to DisplayDiagonal(6.6)
+                get() = Triple(
+                    listOf(
+                        DisplayDiagonal(6.7),
+                        DisplayDiagonal(6.3),
+                        DisplayDiagonal(6.5),
+                        DisplayDiagonal(6.1)
+                    ), DisplayDiagonal(6.6), 9
+                )
         }
     }
 
@@ -118,12 +129,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    AccumulatorCapacity(5000),
-                    AccumulatorCapacity(4200),
-                    AccumulatorCapacity(3500),
-                    AccumulatorCapacity(3000)
-                ) to AccumulatorCapacity(5300)
+                get() = Triple(
+                    listOf(
+                        AccumulatorCapacity(5000),
+                        AccumulatorCapacity(4200),
+                        AccumulatorCapacity(3500),
+                        AccumulatorCapacity(3000)
+                    ), AccumulatorCapacity(5300), 7
+                )
         }
     }
 
@@ -132,12 +145,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Weight(200.0),
-                    Weight(180.0),
-                    Weight(160.0),
-                    Weight(190.0)
-                ) to Weight(167.0)
+                get() = Triple(
+                    listOf(
+                        Weight(200.0),
+                        Weight(180.0),
+                        Weight(160.0),
+                        Weight(190.0)
+                    ), Weight(167.0), 9
+                )
         }
     }
 
@@ -146,12 +161,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Ram(8),
-                    Ram(6),
-                    Ram(8),
-                    Ram(4),
-                ) to Ram(8)
+                get() = Triple(
+                    listOf(
+                        Ram(8),
+                        Ram(6),
+                        Ram(8),
+                        Ram(4),
+                    ), Ram(8), 5
+                )
         }
     }
 
@@ -160,12 +177,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    CamerasCount(3),
-                    CamerasCount(2),
-                    CamerasCount(4),
-                    CamerasCount(1),
-                ) to CamerasCount(3)
+                get() = Triple(
+                    listOf(
+                        CamerasCount(3),
+                        CamerasCount(2),
+                        CamerasCount(4),
+                        CamerasCount(1),
+                    ), CamerasCount(3), 6
+                )
         }
     }
 
@@ -174,12 +193,14 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = listOf(
-                    Storage(256),
-                    Storage(128),
-                    Storage(512),
-                    Storage(128),
-                ) to Storage(256)
+                get() = Triple(
+                    listOf(
+                        Storage(256),
+                        Storage(128),
+                        Storage(512),
+                        Storage(128),
+                    ), Storage(256), 8
+                )
         }
     }
 }

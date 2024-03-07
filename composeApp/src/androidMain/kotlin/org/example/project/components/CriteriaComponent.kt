@@ -16,12 +16,14 @@ fun CriteriaComponent(
     cornerShape: RoundedCornerShape = RoundedCornerShape(0.dp),
     isOutlined: Boolean = false,
     value: Criteria,
+    hint: String? = null,
     onChanges: (Criteria) -> Unit,
 ) {
     when {
 
         value is Criteria.NFC -> DropdownMenuComponent(
-            value, cornerShape, isOutlined, prefix, onSelect = onChanges, modifier = modifier
+            value, cornerShape, isOutlined, prefix, onSelect = onChanges, modifier = modifier,
+            hint = hint
         )
 
         value is Criteria.OS -> DropdownMenuComponent(
@@ -29,10 +31,12 @@ fun CriteriaComponent(
             modifier = modifier
                 .width(200.dp)
                 .fillMaxWidth(),
+            hint = hint
         )
 
         value is Criteria.Processor -> DropdownMenuComponent(
-            value, cornerShape, isOutlined, prefix, onSelect = onChanges, modifier = modifier
+            value, cornerShape, isOutlined, prefix, onSelect = onChanges, modifier = modifier,
+            hint = hint
         )
 
 
@@ -42,7 +46,8 @@ fun CriteriaComponent(
                 onChanges(
                     value::class.java.getDeclaredConstructor(Double::class.java).newInstance(it)
                 )
-            }, outlined = isOutlined, shape = cornerShape, prefix = prefix, modifier = modifier
+            }, outlined = isOutlined, shape = cornerShape, prefix = prefix, modifier = modifier,
+            label = hint
         )
 
         value.digitalValue is Int -> InputNumberComponent(
@@ -51,7 +56,8 @@ fun CriteriaComponent(
                 onChanges(
                     value::class.java.getDeclaredConstructor(Int::class.java).newInstance(it)
                 )
-            }, outlined = isOutlined, shape = cornerShape, prefix = prefix, modifier = modifier
+            }, outlined = isOutlined, shape = cornerShape, prefix = prefix, modifier = modifier,
+            label = hint
         )
     }
 }

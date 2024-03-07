@@ -59,7 +59,7 @@ class AlgorithmFirst(
 
 sealed class Convolution {
 
-    private fun <T> List<List<T>>.transpose(): List<List<T>> =
+     fun <T> List<List<T>>.transpose(): List<List<T>> =
         List(this[0].size) { i -> this.map { it[i] } }
 
     fun calculateCriteria(
@@ -71,9 +71,7 @@ sealed class Convolution {
 
     /** @return the best alternative and its index */
     fun getBestAlternative(calculatedCriteria: List<Double>) =
-        calculatedCriteria.max().let {
-            it to calculatedCriteria.indexOf(it)
-        }
+            calculatedCriteria.indexOf(calculatedCriteria.max())
 
 
     protected abstract fun calculate(

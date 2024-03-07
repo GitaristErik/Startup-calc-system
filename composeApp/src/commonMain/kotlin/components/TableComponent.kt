@@ -53,7 +53,7 @@ fun TableComponent(
 
 @Composable
 fun TableComponent(
-    tableColumns: List<TableColumn>,
+    tableColumns: List<TableColumn>?,
     items: List<List<String>>,
     bodyContent: @Composable (RowScope.(Int, String) -> Unit),
     modifier: Modifier = Modifier,
@@ -65,7 +65,7 @@ fun TableComponent(
         horizontalArrangement = Arrangement.Absolute.SpaceAround,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        tableColumns.forEach { (title, weight, align) ->
+        tableColumns?.forEach { (title, weight, align) ->
             Text(
                 text = title,
                 modifier = modifier.weight(weight),

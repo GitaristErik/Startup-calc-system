@@ -8,19 +8,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import components.InputNumberComponent
 import components.LabelWithIndexes
 import utils.Criteria
 
@@ -30,6 +28,7 @@ fun TitleComponent(
     modifier: Modifier = Modifier,
     index: Int,
     state: MutableState<Criteria>,
+    stateWeight: MutableState<Int>
 ) {
     Row(
         modifier = modifier
@@ -41,20 +40,31 @@ fun TitleComponent(
 
         val c by state
 
-        Text(
-            text = state.value.localizedName,
-            style = MaterialTheme.typography.titleLarge,
-            textAlign = TextAlign.Left,
-            softWrap = true,
-            overflow = TextOverflow.Ellipsis,
+        val cornerShape = RoundedCornerShape(topEnd = 10.dp, bottomEnd = 10.dp)
+        val leftCornerShape = RoundedCornerShape(topStart = 10.dp, bottomStart = 10.dp)
+
+        val prefixA = @Composable {
+            LabelWithIndexes(
+                label = "a",
+                indexTop = "",
+                indexBottom = (index + 1).toString(),
+                suffix = "= ",
+            )
+        }
+
+
+        InputNumberComponent(
+            value = stateWeight.value,
+            charLimit = 3,
             modifier = Modifier
                 .padding(end = 8.dp)
-//                .weight(0.5f)
-//                .fillMaxHeight(),
+                .weight(.3f),
+            onChange = { stateWeight.value = it },
+            outlined = false, shape = leftCornerShape, prefix = prefixA,
         )
 
 
-        val prefix = @Composable {
+        val prefixT = @Composable {
             LabelWithIndexes(
                 label = "T",
                 indexTop = "",
@@ -63,12 +73,13 @@ fun TitleComponent(
             )
         }
 
-        val cornerShape = RoundedCornerShape(topEnd = 10.dp, bottomEnd = 10.dp)
 
         CriteriaComponent(
-            prefix = prefix,
+            modifier = Modifier.weight(0.7f),
+            prefix = prefixT,
             isOutlined = false,
             cornerShape = cornerShape,
+            hint = c.localizedName,
             value = c
         ) {
             state.value = it
@@ -91,22 +102,27 @@ fun TitleComponentPreview() {
             TitleComponent(
                 index = 0,
                 state = mutableStateOf(Criteria.OS.Android13),
+                stateWeight = mutableIntStateOf(1)
             )
             TitleComponent(
                 index = 1,
                 state = mutableStateOf(Criteria.Processor.MediaTekDimensity9000),
+                stateWeight = mutableIntStateOf(2)
             )
             TitleComponent(
                 index = 2,
                 state = mutableStateOf(Criteria.NFC.Yes),
+                stateWeight = mutableIntStateOf(3)
             )
             TitleComponent(
                 index = 3,
                 state = mutableStateOf(Criteria.AccumulatorCapacity(4500)),
+                stateWeight = mutableIntStateOf(4)
             )
             TitleComponent(
                 index = 4,
-                state = mutableStateOf(Criteria.DisplayDiagonal(6.7))
+                state = mutableStateOf(Criteria.DisplayDiagonal(6.7)),
+                stateWeight = mutableIntStateOf(5)
             )
         }
     }

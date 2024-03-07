@@ -47,32 +47,32 @@ fun TableFirstLevel(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                text = StringsData.labelTable1Col1,
+                text = StringsData.labelTableFinal,
                 modifier = Modifier.weight(columnWeight[0]),
                 textAlign = TextAlign.Left,
                 style = titleTypography
             )
             Text(
-                text = StringsData.labelTable1Col2,
+                text = StringsData.labelTableFinal,
                 textAlign = TextAlign.Center,
                 modifier = Modifier.weight(columnWeight[1]),
                 style = titleTypography,
             )
             Text(
-                text = StringsData.labelTable1Col3,
+                text = StringsData.labelTableFinal,
                 modifier = Modifier.weight(columnWeight[2]),
                 textAlign = TextAlign.Center,
                 style = titleTypography,
             )
             Text(
                 modifier = Modifier.weight(columnWeight[3]),
-                text = StringsData.labelTable1Col4,
+                text = StringsData.labelTableFinal,
                 textAlign = TextAlign.Center,
                 style = titleTypography,
             )
             Text(
                 modifier = Modifier.weight(columnWeight[4]),
-                text = StringsData.labelTable1Col5,
+                text = StringsData.labelTableFinal,
                 style = titleTypography,
                 textAlign = TextAlign.Right,
             )

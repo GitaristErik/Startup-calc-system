@@ -23,6 +23,7 @@ kotlinx-serialization = "1.5.1"
 
 junit = "4.13.2"
 foundationLayoutAndroid = "1.5.4"
+jetpackComposeTables = "1.1.0"
 
 [libraries]
 androidx-compose-windowsizeclass = { module = "androidx.compose.material3:material3-window-size-class", version.ref = "androidx-compose-material3" }
@@ -52,6 +53,7 @@ kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serializa
 androidx-ui-tooling-preview-desktop = { group = "androidx.compose.ui", name = "ui-tooling-preview-desktop", version = "1.6.0-alpha08" }
 androidx-ui-tooling-preview-android = { group = "androidx.compose.ui", name = "ui-tooling-preview-android", version = "1.5.4" }
 androidx-foundation-layout-android = { group = "androidx.compose.foundation", name = "foundation-layout-android", version.ref = "foundationLayoutAndroid" }
+jetpack-compose-tables = { group = "com.github.Breens-Mbaka", name = "Jetpack-Compose-Tables", version.ref = "jetpackComposeTables" }
 
 [plugins]
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

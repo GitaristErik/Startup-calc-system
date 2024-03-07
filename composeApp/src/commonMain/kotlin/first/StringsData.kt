@@ -36,24 +36,18 @@ object StringsData {
     val labelCalculate = "Розрахувати"
 
 
-    val labelTable1 = "Отримані дані по стартапу згідно першого рівня"
-    val labelTable1Col1 = "Групи критеріїв"
-    val labelTable1Col2 = "Бальна оцінка"
-    val labelTable1Col3 = "Функція належності бальної оцінки"
-    val labelTable1Col4 = "Бажане значення"
-    val labelTable1Col5 = "Функція належності бажаних значень"
+    val labelTable1 = "Нормовані вхідні дані у множину потужності [0; 1]"
 
-    val labelTable2 = "Отримані дані по стартапу згідно другого рівня"
-    val labelTable2Col1 = "Отриманий терм"
-    val labelTable2Col2 = "Достовірність терму \n(значення функції належності)"
-    val labelTable2Delimiter = " або "
+    val labelTable2 = "Нормовані вагові коефіцієнти"
 
-    val labelTable3 = "Значення оцінок по групах критеріїв"
+    val labelMethod2 = "Метод 2"
 
-    val labelTable4 = "Нормовані вагові коефіцієнти"
+    val labelTable3 = "Нормовані дані згідно формули (2.1)"
 
-
-    val aggregatedScore = "Агрегована оцінка"
-
-    val result = "Результат"
+    val labelTableFinal = "Обчислені згортки"
+    val labelTableFinalCol1 = "Песимістична"
+    val labelTableFinalCol2 = "Обережна"
+    val labelTableFinalCol3 = "Середня"
+    val labelTableFinalCol4 = "Оптимістична"
+    val labelTableFinalCol5 = "Краща"
 }
