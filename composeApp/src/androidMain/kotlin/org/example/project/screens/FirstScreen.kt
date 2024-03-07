@@ -1,13 +1,6 @@
 package org.example.project.screens
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.FilledTonalButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -16,24 +9,49 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import components.TableOneRow
 import first.StringsData
-import first.TableFirstLevel
-import first.TableSecondLevel
-import org.example.project.first.InputComponent
-import utils.FirstAlgorithm
-import utils.FirstAlgorithm.M
+import org.example.project.components.BodyComponent
+import org.example.project.components.TitleComponent
+import utils.Criteria
 
 
 @Composable
 fun FirstScreen() {
 
     var stateCalcPressed by remember { mutableStateOf(false) }
+
+    val (stateInputDataT, stateInputDataListK) = listOf(
+        Criteria.Price.defaultDataSet,
+        Criteria.OS.defaultDataSet,
+        Criteria.Processor.defaultDataSet,
+        Criteria.Ram.defaultDataSet,
+        Criteria.Storage.defaultDataSet,
+        Criteria.NFC.defaultDataSet,
+        Criteria.AccumulatorCapacity.defaultDataSet,
+        Criteria.CamerasCount.defaultDataSet,
+        Criteria.DisplayDiagonal.defaultDataSet,
+        Criteria.Rating.defaultDataSet,
+        Criteria.Weight.defaultDataSet,
+    ).map { (list, t) ->
+        remember(t.localizedName) { mutableStateOf(t) } to
+                remember(list.hashCode()) { mutableStateOf(list) }
+    }.onEachIndexed { index, (t, k) ->
+        LaunchedEffect(t.value) { stateCalcPressed = false }
+        TitleComponent(index = index, state = t)
+
+        LaunchedEffect(k.value) { stateCalcPressed = false }
+        BodyComponent(k)
+    }.unzip()
+
+
+    FilledTonalButton(
+        onClick = { stateCalcPressed = true },
+        enabled = !stateCalcPressed
+    ) {
+        Text(text = StringsData.labelCalculate)
+    }
+
+/*
 
     val stateMapInputData = mapOf(
         "G" to StringsData.arrayG,
@@ -159,7 +177,7 @@ fun FirstScreen() {
             textAlign = TextAlign.Right,
             fontWeight = FontWeight.W500,
         )
-    }
+    }*/
 
 }
 

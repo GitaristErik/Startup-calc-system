@@ -21,7 +21,7 @@ class AlgorithmFirst(
 
     /** @return the reduced value of the criteria in the range [0;1] */
     private fun List<Criteria>.normalizeCriteria(): List<Double> =
-        this.sumOf { it.digitalValue }.let { sum ->
+        this.sumOf { it.digitalValue.toDouble() }.let { sum ->
             this.map {
                 (it.digitalValue.toDouble() / sum).let { value ->
                     if (it is Criteria.IsDescendingOrderForCalc) 1 - value else value
