@@ -52,7 +52,7 @@ class AlgorithmFirst(
     }
 
     val matrixZ by lazy {
-        calculateMatrixZ(normalizedWeights, normalizedCriteria)
+        calculateMatrixZ(normalizedWeights, criteria.map { it.map { i -> i.digitalValue.toDouble() } })
     }
 }
 
