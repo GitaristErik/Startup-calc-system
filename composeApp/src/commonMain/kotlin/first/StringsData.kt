@@ -35,10 +35,9 @@ object StringsData {
 
     val labelCalculate = "Розрахувати"
 
-
     val labelTable1 = "Нормовані вхідні дані у множину потужності [0; 1]"
 
-    val labelTable2 = "Нормовані вагові коефіцієнти"
+    val labelTable2 = "Нормовані вагові коефіцієнти та вето"
 
     val labelMethod2 = "Метод 2"
 

@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import utils.Criteria
 
@@ -43,7 +46,7 @@ private fun PrintCriteria(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp),
+            .padding(0.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
@@ -71,4 +74,22 @@ private fun PrintCriteria(
             )
         }
     }
+}
+
+
+@Preview
+@Composable
+fun BodyComponentPreview() {
+    val state = remember { mutableStateOf(Criteria.NFC) }
+    BodyComponent(
+        state = remember {
+            mutableStateOf(
+                listOf(
+                    Criteria.NFC.Yes,
+                    Criteria.NFC.Yes,
+                    Criteria.NFC.Yes, Criteria.NFC.Yes
+                )
+            )
+        }
+    )
 }

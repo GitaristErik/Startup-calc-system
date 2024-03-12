@@ -1,12 +1,18 @@
 package utils
 
+import utils.Electre.ElectreDirection.*
 import kotlin.math.abs
-
+import kotlin.math.max
+import kotlin.math.min
 
 class Electre(
     private val criteria: List<List<Double>>,
     private val verbosePrintOutput: Boolean = false
 ) {
+
+    enum class ElectreDirection {
+        MAX, MIN
+    }
 
     private fun printElectre(
         concordanceMatrix: List<DoubleArray>,
@@ -99,7 +105,7 @@ class Electre(
      */
     private fun getElectre1Matrices(
         weights: List<Double>,
-        prefs: List<String>,
+        prefs: List<ElectreDirection>,
         vetoes: List<Double>,
         preferenceThresholds: List<Double>? = null
     ): Pair<List<DoubleArray>, List<DoubleArray>> {
@@ -108,7 +114,7 @@ class Electre(
         val nonDiscordanceMatrix = List(criteria.size) { DoubleArray(criteria.size) { 0.0 } }
 
         for (x in criteria.indices) {
-            for (y in criteria.indices) {
+            for (y in x until criteria.size) {
                 if (x == y) {
                     concordanceMatrix[x][y] = Double.NaN
                     nonDiscordanceMatrix[x][y] = Double.NaN
@@ -124,12 +130,12 @@ class Electre(
                 for (idx in weights.indices) {
                     val (w, p, v) = Triple(weights[idx], prefs[idx], vetoes[idx])
 
-                    val bestVal = if (p == "max") {
-//                        max(a[idx], b[idx])
-                        a[idx].coerceAtLeast(b[idx])
+                    val bestVal = if (p == MAX) {
+                        max(a[idx], b[idx])
+//                        a[idx].coerceAtLeast(b[idx])
                     } else {
-//                        min(a[idx], b[idx])
-                        a[idx].coerceAtMost(b[idx])
+                        min(a[idx], b[idx])
+//                        a[idx].coerceAtMost(b[idx])
                     }
 
                     val diff = abs(b[idx] - a[idx])
@@ -234,21 +240,18 @@ class Electre(
      */
     fun solve(
         weights: List<Double>,
-        prefs: List<String>,
+        prefs: List<ElectreDirection>,
         vetoes: List<Double>,
         concordanceThreshold: Double,
         preferenceThresholds: List<Double>? = null
-    ): Map<String, List<String>> {
+    ): Pair<List<String>, List<String>> {
 
-        // validate weights
+/*        // validate weights
         require(weights.size == criteria.size) {
             "Weights length must match criteria length"
         }
 
         // validate prefs
-        require(prefs.all { it in setOf("max", "min") }) {
-            "Prefs must be 'max' or 'min'"
-        }
         require(prefs.size == criteria.size) {
             "Prefs length must match criteria length"
         }
@@ -256,7 +259,8 @@ class Electre(
         // validate vetoes
         require(vetoes.size == criteria.size) {
             "Vetoes length must match criteria length"
-        }
+        }*/
+/*
 
         // validate preference thresholds
         preferenceThresholds?.let {
@@ -264,6 +268,7 @@ class Electre(
                 "Preference thresholds length must match criteria length"
             }
         }
+*/
 
         // calculate matrices
         val (concordanceMatrix, nonDiscordanceMatrix) =
@@ -293,9 +298,25 @@ class Electre(
         }
 
         // return results
-        return mapOf(
-            "kernels" to kernels,
-            "frequentKernels" to frequentKernels
-        )
+        return kernels to frequentKernels
     }
 }
+
+/*
+val data = listOf(
+    listOf(0.8557692307692308, 0.7884615384615384, 0.7115384615384616, 0.6442307692307692),
+    listOf(0.2653061224489796, 0.22448979591836735, 0.24489795918367346, 0.2653061224489796),
+    listOf(0.2854419557591456, 0.25345834244770454, 0.11316953604471816, 0.3479301657484317),
+    listOf(0.3076923076923077, 0.23076923076923078, 0.3076923076923077, 0.15384615384615385),
+    listOf(0.25, 0.125, 0.5, 0.125),
+    listOf(0.3333333333333333, 0.3333333333333333, 0.3333333333333333, 0.0),
+    listOf(0.3184713375796178, 0.267515923566879, 0.2229299363057325, 0.1910828025477707),
+    listOf(0.3, 0.2, 0.4, 0.1),
+    listOf(0.26171875, 0.24609374999999997, 0.25390625, 0.23828124999999997),
+    listOf(0.25139664804469275, 0.23463687150837992, 0.24581005586592183, 0.2681564245810056),
+    listOf(0.726027397260274, 0.7534246575342466, 0.7808219178082192, 0.7397260273972603),
+)
+
+val weights = listOf(0.08, 0.06666666666666667, 0.12, 0.06666666666666667, 0.10666666666666667, 0.04, 0.09333333333333334, 0.08, 0.12, 0.10666666666666667, 0.12)
+val vetoes = listOf(0.06666666666666665, 0.10666666666666666, 0.12, 0.06, 0.07999999999999999, 0.13199999999999998, 0.07466666666666666, 0.09333333333333331, 0.10666666666666666, 0.12, 0.039999999999999994)
+ */

@@ -51,10 +51,26 @@ object StringsData {
     )
 
 
-    val labelRiskLevel = "Рівень ризику"
-
-
     val labelCalculate = "Розрахувати"
+
+    // indifference_threshold
+    val labelIndifferenceThreshold =
+        "Порогове значення байдужості (використовується для визначення незначних різниць між оцінками альтернатив)"
+
+    // Порогові значення вето для кожного критерію. Якщо різниця в оцінках альтернатив за цим критерієм перевищує порогове значення, то перевага за іншими критеріями не враховується
+    const val labelVeto: String = "Порогове значення вето"
+
+    //    const val labelVetoExtra: String =
+//        "Якщо різниця в оцінках перевищує це значення, перевага в інших критеріях ігнорується"
+    const val labelVetoExtra: String = "Якщо різниця в оцінках велика, інші критерії ігноруються"
+
+    const val labelResult: String = "Отримані дані"
+    const val labelResult2: String = "Most Frequent Kernels"
+
+
+    val labelWeight: String = "Вагові коефіцієнти для кожної альтернативи"
+
+
 
     val labelTable1 = "Визначення результуючої терм-оцінки."
     val labelTable1Col1 = "Групи критеріїв"

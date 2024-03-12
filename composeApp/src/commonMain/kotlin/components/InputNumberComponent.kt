@@ -53,11 +53,12 @@ fun <T : Number> InputNumberComponent(
             modifier = modifier,
             value = value.toString(),
             onValueChange = {
-                if (validate(it)) {
-                    onChange(parseValue(it)!!)
-                }
+                onChange(parseValue(it)!!)
+//                if (validate(it)) {
+//                    onChange(parseValue(it)!!)
+//                }
             },
-            label = { Text(label ?: "") },
+            label = { Text(text = label ?: "", maxLines = 1) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             keyboardActions = KeyboardActions { },
             maxLines = 1,
@@ -78,11 +79,12 @@ fun <T : Number> InputNumberComponent(
             modifier = modifier,
             value = value.toString(),
             onValueChange = {
-                if (validate(it)) {
-                    onChange(parseValue(it)!!)
-                }
+                onChange(parseValue(it)!!)
+//                if (validate(it)) {
+//                    onChange(parseValue(it)!!)
+//                }
             },
-            label = { Text(label ?: "") },
+            label = { Text(text = label ?: "", maxLines = 1) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             keyboardActions = KeyboardActions { },
             maxLines = 1,

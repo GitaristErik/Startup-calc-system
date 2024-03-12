@@ -14,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableDoubleStateOf
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -55,15 +56,20 @@ fun FirstScreen() {
         Criteria.Rating.defaultDataSet,
         Criteria.Weight.defaultDataSet,
     ).map { (list, t, a) ->
-     Triple(
-        remember(t.localizedName) { mutableStateOf(t) } ,
-        remember { mutableIntStateOf(a) } ,
-         remember(list.hashCode()) { mutableStateOf(list) }
-     )
+        Triple(
+            remember(list[0].localizedName) { mutableDoubleStateOf(t) },
+            remember { mutableIntStateOf(a) },
+            remember(list.hashCode()) { mutableStateOf(list) }
+        )
     }.onEachIndexed { index, (t, a, k) ->
-        LaunchedEffect(t.value) { stateCalcPressed = false }
+        LaunchedEffect(t.doubleValue) { stateCalcPressed = false }
         LaunchedEffect(a.intValue) { stateCalcPressed = false }
-        TitleComponent(index = index, state = t, stateWeight = a)
+        TitleComponent(
+            index = index,
+            localizedName = k.value[0].localizedName,
+            state = t,
+            stateWeight = a
+        )
 
         LaunchedEffect(k.value) { stateCalcPressed = false }
         BodyComponent(k)
@@ -325,7 +331,7 @@ private fun TableWeightNormalize(values: List<Double>) {
 }
 
 
-private  fun <A, B, C> List<Triple<A, B, C>>.unzip3(): Triple<List<A>, List<B>, List<C>> {
+fun <A, B, C> List<Triple<A, B, C>>.unzip3(): Triple<List<A>, List<B>, List<C>> {
     val listA = mutableListOf<A>()
     val listB = mutableListOf<B>()
     val listC = mutableListOf<C>()

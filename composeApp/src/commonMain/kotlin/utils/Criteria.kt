@@ -21,7 +21,7 @@ sealed interface Criteria {
 
         companion object {
             val defaultDataSet
-                get() = Triple(listOf(Yes, Yes, Yes, No), Yes, 3)
+                get() = Triple(listOf(Yes, Yes, Yes, No), 0.99, 3)
         }
     }
 
@@ -46,7 +46,7 @@ sealed interface Criteria {
                         MediaTekDimensity9000,
                         Exynos1280,
                         AppleA16Bionic
-                    ), Snapdragon8Gen1, 9
+                    ), 0.9, 9
                 )
         }
     }
@@ -71,7 +71,7 @@ sealed interface Criteria {
                         Android11,
                         Android12,
                         IOS16
-                    ), Android13, 5
+                    ), 0.8, 5
                 )
         }
     }
@@ -87,7 +87,7 @@ sealed interface Criteria {
                         Price(22000.0),
                         Price(30000.0),
                         Price(37000.0)
-                    ), Price(10000.0), 6
+                    ), 0.5, 6
                 )
         }
     }
@@ -103,7 +103,7 @@ sealed interface Criteria {
                         Rating(4.2),
                         Rating(4.4),
                         Rating(4.8)
-                    ), Rating(5.0), 8
+                    ), 0.9, 8
                 )
         }
     }
@@ -119,7 +119,7 @@ sealed interface Criteria {
                         DisplayDiagonal(6.3),
                         DisplayDiagonal(6.5),
                         DisplayDiagonal(6.1)
-                    ), DisplayDiagonal(6.6), 9
+                    ), 0.8, 9
                 )
         }
     }
@@ -135,12 +135,12 @@ sealed interface Criteria {
                         AccumulatorCapacity(4200),
                         AccumulatorCapacity(3500),
                         AccumulatorCapacity(3000)
-                    ), AccumulatorCapacity(5300), 7
+                    ), 0.56, 7
                 )
         }
     }
 
-    data class Weight(override val digitalValue: Double) : Criteria {
+    data class Weight(override val digitalValue: Double) : Criteria, IsDescendingOrderForCalc {
         override val localizedName: String = "Вага"
 
         companion object {
@@ -151,7 +151,7 @@ sealed interface Criteria {
                         Weight(180.0),
                         Weight(160.0),
                         Weight(190.0)
-                    ), Weight(167.0), 9
+                    ), 0.3, 9
                 )
         }
     }
@@ -167,7 +167,7 @@ sealed interface Criteria {
                         Ram(6),
                         Ram(8),
                         Ram(4),
-                    ), Ram(8), 5
+                    ), 0.45, 5
                 )
         }
     }
@@ -183,7 +183,7 @@ sealed interface Criteria {
                         CamerasCount(2),
                         CamerasCount(4),
                         CamerasCount(1),
-                    ), CamerasCount(3), 6
+                    ), 0.7, 6
                 )
         }
     }
@@ -199,7 +199,7 @@ sealed interface Criteria {
                         Storage(128),
                         Storage(512),
                         Storage(128),
-                    ), Storage(256), 8
+                    ), 0.6, 8
                 )
         }
     }

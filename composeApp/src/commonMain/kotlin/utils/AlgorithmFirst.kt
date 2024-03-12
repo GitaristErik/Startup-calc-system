@@ -7,20 +7,20 @@ import kotlin.math.sqrt
 
 
 @Suppress("LocalVariableName", "PropertyName")
-class AlgorithmFirst(
+open class AlgorithmFirst(
     private val criteria: List<List<Criteria>>,
     private val weights: List<Double>,
-    val T: List<Criteria>
+    val T: List<Double>
 ) {
 
     /** @return the reduced value in the range [0;1] */
-    private fun List<Double>.normalizeDoubles(): List<Double> = this.sum().let { weightsSum ->
+    protected fun List<Double>.normalizeDoubles(): List<Double> = this.sum().let { weightsSum ->
         this.map { it / weightsSum }
     }
 
 
     /** @return the reduced value of the criteria in the range [0;1] */
-    private fun List<Criteria>.normalizeCriteria(): List<Double> =
+    protected fun List<Criteria>.normalizeCriteria(): List<Double> =
         this.sumOf { it.digitalValue.toDouble() }.let { sum ->
             this.map {
                 (it.digitalValue.toDouble() / sum).let { value ->
@@ -35,6 +35,10 @@ class AlgorithmFirst(
 
     val normalizedCriteria by lazy {
         criteria.map { it.normalizeCriteria() }
+    }
+
+    private val normalizedT by lazy {
+        T.normalizeDoubles()
     }
 
 
@@ -52,7 +56,7 @@ class AlgorithmFirst(
     }
 
     val matrixZ by lazy {
-        calculateMatrixZ(normalizedWeights, criteria.map { it.map { i -> i.digitalValue.toDouble() } })
+        calculateMatrixZ(normalizedT, criteria.map { it.map { i -> i.digitalValue.toDouble() } })
     }
 }
 

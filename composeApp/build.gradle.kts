@@ -90,6 +90,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview.desktop)
     implementation(libs.androidx.ui.tooling.preview.android)
     implementation(libs.androidx.foundation.layout.android)
+    implementation(kotlin("reflect"))
 }
 
 compose.desktop {
